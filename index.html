@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Rain by TSG</title>
+  <style type="text/css" media="all">
+  
+    *{
+      margin: 0;
+      padding: 0;
+      background: #000;
+    }
+     body 
+    {
+       background: black; 
+    }
+     canvas {display:block;}
+     
+  </style>  
+</head>
+
+<body>
+
+  <canvas id="canv"></canvas>  
+  <script type="text/javascript" charset="utf-8">
+      alert("Hope you will enjoy This...");
+    
+    var c = document.getElementById('canv');
+    var ctx = c.getContext('2d');
+    
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+   
+    var char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
+        char = char.split("");
+       
+    var fsi = 11;
+    var coulmn = c.width/fsi;
+    var rain = [];
+    for (var i = 0; i < coulmn; i++)
+      rain[i] = 2;
+    
+    function draw() {
+      ctx.fillStyle = 'rgb(255,255,255,0.04)';
+      ctx.fillRect(0, 0, c.width, c.height);  
+      ctx.fillStyle = "#f00";
+      ctx.font = fsi + "px arial";  
+      for (var x = 0; x < rain.length; x++) {
+        var text = char[Math.floor(Math.random() * char.length)];    
+        ctx.fillText(text, x*fsi, rain[x]*fsi);      
+        if (rain[x]*fsi > c.height && Math.random() > 0.975)
+          rain[x] = 0;       
+          rain[x]++;       
+      }
+    }        
+        setInterval(draw, 35);
+        
+  </script>
+  
+</body>
+</html>
